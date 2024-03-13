@@ -1,5 +1,5 @@
 {
-    "env": {
+    "dev": {
         "app_function": "app.lambda_handler",
         "aws_region": "us-east-1",
         "profile_name": null,
