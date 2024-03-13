@@ -52,6 +52,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
+      
+      - name: Running virtualEnv
+        run: |
+          python -m venv env
 
-      - name: Running zappa
-        run: zappa deploy dev
+      - name: Running zappa 
+        run: |
+          source env/bin/activate 
+          zappa deploy dev
+        
