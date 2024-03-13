@@ -19,6 +19,7 @@ def download_and_save_to_s3(url, page_num):
         print(f'Guardado en S3: s3://bucket-raw/{file_key}')
     else:
         print(f'Error al descargar la página {url}')
+    print("hola mundo")
 
 def lambda_handler(event, context):
     base_url = 'https://casas.mitula.com.co/searchRE/nivel1-Cundinamarca/nivel2-Bogot%C3%A1/orden-0/q-bogot%C3%A1/pag-'
