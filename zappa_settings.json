@@ -9,6 +9,12 @@
         "keep_warm": false,
         "manage_roles": false,
         "apigateway_enabled": false,
-        "role_name": "LabRole"
+        "role_name": "LabRole",
+
+        "events": [{
+            "function": "test_utils.py", 
+            "expression": "cron(50 22 * * ? *)" 
+        }]
     }
+    
 }
