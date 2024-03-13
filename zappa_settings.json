@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "app_function": "app.lambda_handler",
+        "aws_region": "us-east-1",
+        "profile_name": null,
+        "project_name": "parcialcorte1",
+        "runtime": "python3.10",
+        "s3_bucket": "parcial1",
+        "keep_warm": false,
+        "manage_roles": false,
+        "apigateway_enabled": false,
+        "role_name": "LabRole"
+    }
+}
