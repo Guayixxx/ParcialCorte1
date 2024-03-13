@@ -1,5 +1,5 @@
 {
-    "dev": {
+    "env": {
         "app_function": "app.lambda_handler",
         "aws_region": "us-east-1",
         "profile_name": null,
@@ -12,7 +12,7 @@
         "role_name": "LabRole",
 
         "events": [{
-            "function": "test_utils.py", 
+            "function": "app.py", 
             "expression": "cron(50 22 * * ? *)" 
         }]
     }
