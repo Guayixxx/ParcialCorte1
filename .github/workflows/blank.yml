@@ -44,6 +44,4 @@ jobs:
           aws-region: us-east-1
 
       - name: Running zappa
-        run: |
-          source env/bin/activate
-          zappa deploy dev
+        run: zappa deploy dev
