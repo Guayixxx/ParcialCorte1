@@ -13,8 +13,7 @@
 
         "events": [{
             "function": "app.py", 
-            "expression": "cron(50 22 * * ? *)" 
+            "expression": "cron(08 4 * * ? *)" 
         }]
     }
-    
 }

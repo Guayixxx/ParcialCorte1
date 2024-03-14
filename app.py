@@ -1,33 +1,23 @@
 import boto3
 import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
 
-# Configurar el cliente de S3
-s3 = boto3.client('s3')
-
-def download_and_save_to_s3(url, page_num):
-    # Descargar la página web
-    response = requests.get(url)
-    if response.status_code == 200:
-        # Parsear el HTML
-        soup = BeautifulSoup(response.text, 'html.parser')
-        # Guardar el contenido en S3
-        now = datetime.now()
-        file_key = f'casas/contenido-pag-{page_num}-{now.strftime("%Y-%m-%d")}.html'
-        s3.put_object(Bucket='parcial1', Key=file_key, Body=response.text)
-        print(f'Guardado en S3: s3://bucket-raw/{file_key}')
-    else:
-        print(f'Error al descargar la página {url}')
-
 def lambda_handler(event, context):
-    base_url = 'https://casas.mitula.com.co/searchRE/nivel1-Cundinamarca/nivel2-Bogot%C3%A1/orden-0/q-bogot%C3%A1/pag-'
+    bucket_name = 'parcial1'
+    print("entro a la fincion")
     for page_num in range(1, 6):
-        print("hola mundo")
-        url = f'{base_url}{page_num}?req_sgmt=REVTS1RPUDtVU0VSX1NFQVJDSDtTRVJQOw=='
-        download_and_save_to_s3(url, page_num)
+        url = f'https://casas.mitula.com.co/searchRE/nivel1-Cundinamarca/nivel2-Bogot%C3%A1/orden-0/q-bogot%C3%A1/pag-{page_num}?req_sgmt=REVTS1RPUDtVU0VSX1NFQVJDSDtTRVJQOw=='
+        html_content = requests.get(url).content
+
+        # Obtener la fecha actual
+        current_date = datetime.now().strftime("%Y-%m-%d")
+
+        # Guardar el HTML en S3 con el formato deseado
+        s3_key = f'casas/contenido-pag-{page_num}-{current_date}.html'
+        s3 = boto3.client('s3')
+        s3.put_object(Bucket=bucket_name, Key=s3_key, Body=html_content)
 
     return {
         'statusCode': 200,
-        'body': 'Datos de finca raíz descargados y guardados en S3'
+        'body': 'Páginas HTML descargadas y guardadas en S3.'
     }
