@@ -13,7 +13,7 @@
         "events": [
             {
                 "function": "app.lambda_handler",
-                "expression": "cron(05 03 * * ? *)"
+                "expression": "cron(14 40 * * ? *)"
             },
             {
                 "function": "app.extraer",
