@@ -5,15 +5,25 @@
         "profile_name": null,
         "project_name": "parcialcorte1",
         "runtime": "python3.10",
-        "s3_bucket": "parcial1",
+        "s3_bucket": "zappa-b8zse8k9l",
         "keep_warm": false,
         "manage_roles": false,
         "apigateway_enabled": false,
         "role_name": "LabRole",
-
-        "events": [{
-            "function": "app.py", 
-            "expression": "cron(08 4 * * ? *)" 
-        }]
+        "events": [
+            {
+                "function": "app.lambda_handler",
+                "expression": "cron(05 03 * * ? *)"
+            },
+            {
+                "function": "app.extraer",
+                "event_source": {
+                    "arn": "arn:aws:s3:::parcial1",
+                    "events": [
+                        "s3:ObjectCreated:*"
+                    ]
+                }
+            }
+        ]
     }
 }

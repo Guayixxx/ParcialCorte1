@@ -45,6 +45,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: flake8
+        run: flake8 --exclude=env
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -61,4 +64,5 @@ jobs:
         run: |
           source env/bin/activate 
           zappa update dev
+
         
