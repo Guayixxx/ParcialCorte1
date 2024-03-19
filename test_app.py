@@ -25,7 +25,6 @@ def test_lambda_handler(mock_requests_get, mock_s3_client):
     mocked_response.content = b'<html><body>Mocked HTML</body></html>'
     requests.get.return_value = mocked_response
 
-    # Llamar a la función lambda_handler    
     from app import lambda_handler  # Asegúrate de importar el módulo correcto
     event = {}
     context = {}
